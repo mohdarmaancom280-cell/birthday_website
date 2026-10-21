@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Special Surprise</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #d85b8a, #e8a4b9);
+    min-height: 100vh;
+}
+
+/* First Page */
+
+#welcome {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.surprise-card {
+    width: 100%;
+    max-width: 420px;
+    background: #efffe8;
+    padding: 35px 25px;
+    border-radius: 28px;
+    text-align: center;
+    box-shadow: 0 10px 40px #0002;
+}
+
+.surprise-card h2 {
+    color: #a8465f;
+    font-size: 28px;
+    margin-bottom: 18px;
+}
+
+.surprise-card p {
+    color: #536b78;
+    margin-bottom: 25px;
+}
+
+.surprise-card input {
+    width: 100%;
+    padding: 17px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    font-size: 18px;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+.celebrate-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    background: #cf5279;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#error {
+    color: #b42342;
+    margin-top: 12px;
+}
+
+/* Birthday Page */
+
+#birthday {
+    display: none;
+    padding: 25px 15px 40px;
+}
+
+.header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: clamp(35px, 6vw, 65px);
+    margin-bottom: 15px;
+    text-shadow: 0 4px 10px #0002;
+}
+
+.header p {
+    display: inline-block;
+    padding: 12px 18px;
+    background: #ffffff35;
+    border-radius: 30px;
+    font-size: 17px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    background: #fffdf5;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.container h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #182337;
+}
+
+.upload-area {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 14px 22px;
+    background: #f6dce6;
+    color: #933c5b;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+#galleryUpload {
+    display: none;
+}
+
+/* Memories Gallery */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.memory {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #d8eabf;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 5px 15px #0002;
+}
+
+.memory > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.add-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 20px);
+    padding: 12px 5px;
+    border: none;
+    border-radius: 12px;
+    background: #ffffffed;
+    color: #8f3454;
+    font-weight: bold;
+}
+
+.user-photo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32%;
+    height: 45%;
+    object-fit: cover;
+    border: 3px solid white;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px #0003;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: none;
+    border-radius: 8px;
+    padding: 7px;
+    background: white;
+    color: #a12b46;
+}
+
+#message {
+    text-align: center;
+    color: #a8465f;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Mobile Responsive */
+
+@media (max-width: 800px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .container {
+        padding: 18px;
+    }
+
+    .container h2 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 450px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .header p {
+        font-size: 14px;
+    }
+
+    .surprise-card h2 {
+        font-size: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FIRST PAGE -->
+
+<section id="welcome">
+
+    <div class="surprise-card">
+
+        <h2>🎉 Special Surprise</h2>
+
+        <p>Please enter your age to begin</p>
+
+        <form id="ageForm">
+
+            <input
+                type="number"
+                id="age"
+                placeholder="e.g. 20"
+                min="1"
+                max="120"
+                required
+            >
+
+            <button class="celebrate-btn" type="submit">
+                Let's Celebrate!
+            </button>
+
+        </form>
+
+        <div id="error"></div>
+
+    </div>
+
+</section>
+
+
+<!-- SECOND PAGE -->
+
+<section id="birthday">
+
+    <div class="header">
+
+        <h1>Happy Birthday! 🎂</h1>
+
+        <p>
+            Today is all about celebrating you and the wonderful
+            moments you bring into our lives.
+        </p>
+
+    </div>
+
+
+    <div class="container">
+
+        <h2>💌 Beautiful Memories</h2>
+
+        <div class="upload-area">
+
+            <label for="galleryUpload" class="upload-btn">
+                📷 Choose Photo from Gallery
+            </label>
+
+            <input
+                type="file"
+                id="galleryUpload"
+                accept="image/*"
+            >
+
+        </div>
+
+        <div class="gallery" id="gallery"></div>
+
+        <div id="message"></div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* Age Form */
+
+const ageForm = document.getElementById("ageForm");
+
+ageForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const age = Number(document.getElementById("age").value);
+    const error = document.getElementById("error");
+
+    if (!Number.isInteger(age) || age < 1 || age > 120) {
+
+        error.textContent = "Please enter a valid age.";
+        return;
+
+    }
+
+    error.textContent = "";
+
+    document.getElementById("welcome").style.display = "none";
+
+    document.getElementById("birthday").style.display = "block";
+
+    window.scrollTo(0, 0);
+
+});
+
+
+/* Sample Memory Images */
+
+const memories = [
+    {
+        title: "Beautiful Memory",
+        image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        title: "Sweet Moments",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        title: "Together Forever",
+        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        title: "Special Memories",
+        image: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        title: "Happy Moments",
+        image: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        title: "Forever Together",
+        image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80"
+    }
+];
+
+
+const gallery = document.getElementById("gallery");
+
+let selectedCard = null;
+
+
+/* Create Gallery Cards */
+
+memories.forEach(function(memory) {
+
+    const card = document.createElement("div");
+
+    card.className = "memory";
+
+    const image = document.createElement("img");
+
+    image.src = memory.image;
+
+    image.alt = memory.title;
+
+    image.loading = "lazy";
+
+    image.onerror = function() {
+
+        image.onerror = null;
+
+        image.src =
+        "data:image/svg+xml," +
+        encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg"
+            width="600" height="450">
+                <rect width="100%" height="100%"
+                fill="#c8e6a0"/>
+                <text x="50%" y="45%"
+                text-anchor="middle"
+                font-size="35" fill="#344054">
+                💖
+                </text>
+                <text x="50%" y="60%"
+                text-anchor="middle"
+                font-size="24" fill="#344054">
+                ${memory.title}
+                </text>
+            </svg>
+        `);
+
+    };
+
+
+    const button = document.createElement("button");
+
+    button.className = "add-btn";
+
+    button.textContent = "＋ Add Your Photo";
+
+    button.type = "button";
+
+    button.addEventListener("click", function() {
+
+        selectedCard = card;
+
+        document.getElementById("galleryUpload").click();
+
+    });
+
+
+    card.appendChild(image);
+
+    card.appendChild(button);
+
+    gallery.appendChild(card);
+
+});
+
+
+/* Select Photo from Device Gallery */
+
+document.getElementById("galleryUpload")
+.addEventListener("change", function(event) {
+
+    const file = event.target.files[0];
+
+    const message = document.getElementById("message");
+
+    if (!file) {
+        return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+
+        message.textContent = "Please select a valid image.";
+
+        event.target.value = "";
+
+        return;
+
+    }
+
+    if (file.size > 12 * 1024 * 1024) {
+
+        message.textContent =
+        "Please select a photo smaller than 12 MB.";
+
+        event.target.value = "";
+
+        return;
+
+    }
+
+    if (!selectedCard) {
+
+        message.textContent =
+        "Please click Add Your Photo first.";
+
+        event.target.value = "";
+
+        return;
+
+    }
+
+
+    const reader = new FileReader();
+
+    reader.onload = function() {
+
+        let userPhoto = selectedCard.querySelector(".user-photo");
+
+        if (!userPhoto) {
+
+            userPhoto = document.createElement("img");
+
+            userPhoto.className = "user-photo";
+
+            userPhoto.alt = "Your selected photo";
+
+            selectedCard.appendChild(userPhoto);
+
+        }
+
+        userPhoto.src = reader.result;
+
+
+        let removeButton = selectedCard.querySelector(".remove-btn");
+
+        if (!removeButton) {
+
+            removeButton = document.createElement("button");
+
+            removeButton.className = "remove-btn";
+
+            removeButton.textContent = "✕";
+
+            removeButton.type = "button";
+
+            removeButton.title = "Remove photo";
+
+            removeButton.addEventListener("click", function() {
+
+                userPhoto.remove();
+
+                removeButton.remove();
+
+                message.textContent = "Photo removed successfully.";
+
+            });
+
+            selectedCard.appendChild(removeButton);
+
+        }
+
+        message.textContent = "Your photo has been added! 🎉";
+
+        event.target.value = "";
+
+    };
+
+
+    reader.onerror = function() {
+
+        message.textContent =
+        "Unable to read this image. Please try another.";
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+</script>
+
+</body>
+</html>
